@@ -1,0 +1,193 @@
+<!doctype>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>QR Code-Based Smart Food Ordering and Payment System</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https:/home/fonts.googleapis.com">
+
+    <link rel="preconnect" href="https:/home/fonts.gstatic.com" crossorigin>
+
+    <link href="https:/home/fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap"
+        rel="stylesheet">
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/slick.css" />
+
+    <link href="/static/css/tooplate-little-fashion.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+        integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+        integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+        crossorigin="anonymous"></script>
+    <!--
+
+Tooplate 2127 Little Fashion
+
+https://www.tooplate.com/view/2127-little-fashion
+
+-->
+</head>
+
+<body>
+
+    <section class="preloader">
+        <div class="spinner">
+            <span class="sk-inner-circle"></span>
+        </div>
+    </section>
+
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="/">
+                <strong><span>QR Code-Based Smart  </span>Food Ordering and Payment System</strong>
+            </a>
+
+            <div class="d-lg-none">
+                <a href="sign-in" class="bi-person custom-icon me-3"></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                </ul>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="True" style="margin-right:50px;">
+                        Admin
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'adminsignin' %}">Sign-In</a></li>
+                        
+
+                    </ul>
+
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="True" style="margin-right:50px;">
+                        Customer
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'customersignin' %}">Sign-In</a></li>
+                        <li><a class="dropdown-item" href="{% url 'customersignup' %}">Sign Up</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="True">
+                        Restaurant
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'restaurantsignin' %}">Sign-In</a></li>
+                        <li><a class="dropdown-item" href="{% url 'restaurantsignup' %}">Sign Up</a></li>
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+    <main></main>
+    <section class="slick-slideshow">
+        <div class="slick-custom">
+            <img src="/static/images/slideshow/medium-shot-business-women-high-five.jpeg" class="img-fluid" alt="">
+
+            <div class="slick-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slick-custom">
+            <img src="/static/images/slideshow/team-meeting-renewable-energy-project.jpeg" class="img-fluid" alt="">
+
+            <div class="slick-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-10">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slick-custom">
+            <img src="/static/images/slideshow/two-business-partners-working-together-office-computer.jpeg"
+                class="img-fluid" alt="">
+
+            <div class="slick-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+    </main>
+    {% endblock %}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/Headroom.js"></script>
+    <script src="/static/js/jQuery.headroom.js"></script>
+    <script src="/static/js/slick.min.js"></script>
+    <script src="/static/js/custom.js"></script>
+    <script>
+        function check() {
+            fetch('/check')
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err))
+
+            setTimeout(check, 1000 * 10)
+        }
+
+        check()
+    </script>
+
+</body>

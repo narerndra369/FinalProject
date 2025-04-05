@@ -1,0 +1,65 @@
+{% extends 'customerhome.html' %}
+{% block content %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<section class="contact section-padding">
+    <div class="container">
+        <center>
+            <div class="col-lg-6 col-12">
+                <h2 class="mb-4">User<span> Order</span></h2>
+                <div class="accordion" id="accordionGeneral">
+                    <div class="accordion-item">
+                        <table width="100%">
+                            <th style="text-align: center;">Id</th>
+                            <th style="text-align: center;">Table Number</th>
+                            <th style="text-align: center;">User Email</th>
+                            <th style="text-align: center;"> Order Status</th>
+                            <th style="text-align: center;">Action</th>
+                            
+                            {% for i in data %}
+                            <tr>
+                                <td style="text-align:center">{{i.id}}</td>
+                                <td style="text-align:center">{{i.tablenumber}}</td>
+                                <td style="text-align:center">{{i.user_email}}</td>
+                                <td style="text-align:center">{{i.order_status}}</td>
+                                    {% if i.order_status == 'Accepted' %}
+                                <td style="text-align:center"><a href="{% url 'payment' i.id %}"><button class="btn btn-primary">Payment</button></a></td>
+                                {% else %}
+                                <td style="text-align:center">{{i.order_status}}</td>
+
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    {% comment %} <a href="{% url 'payment' %}" class="btn btn-primary">Payment</a> {% endcomment %}
+                </div>
+
+            </div>
+        </center>
+
+
+
+    </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

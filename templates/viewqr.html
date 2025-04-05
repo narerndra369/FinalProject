@@ -1,0 +1,33 @@
+{% extends "customerhome.html" %}
+
+
+{% block content %}
+
+
+<section class="products section-padding">
+
+    <div class="container">
+        <center>
+            {% for i in dc %}
+            <div class="col-lg-4 col-12 mb-3">
+                <div class="product-thumb">
+                    <a href="#">
+                        <img src="/static/qrcodes/{{i.qrcode}}" class="img-fluid product-image" alt="">
+                    </a>
+                    <div class="product-info">
+                        <h5 class="product-title mb-0">
+                            <a href="{% url 'viewqr' i.id %}" class="product-title-link">{{i.restaurantname}}</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </center>
+
+
+
+    </div>
+
+
+</section>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "customerhome.html" %}
+
+{% block content %}
+
+<section class="faq section-padding">
+    <div class="container">
+        <center>
+            <h2><span>Payment</span> page</h2>
+            <div class="col-lg-8 col-6">
+                <form role="form" action="{% url 'pay' id %}" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-floating mb-4 p-0">
+                        <input type="text" name="tablenumber" id="amount" class="form-control" value="{{tableno}}"
+                            placeholder="Table Number" readonly required>
+
+                        <label for="amount">Table Number</label>
+                    </div>
+
+
+                    <div class="form-floating mb-4 p-0">
+                        <input type="text" name="amount" id="amount" class="form-control" value="{{total}}"
+                            placeholder="Total Amount" readonly required>
+
+                        <label for="amount">Total Amount</label>
+                    </div>
+
+                    <div class="form-floating mb-4 p-0">
+                        <input type="text" name="resid" id="amount" class="form-control" value="{{restaurent_id}}" 
+                            placeholder="Table Number" readonly required hidden>
+
+        
+                    </div>
+
+                    <div class="form-floating mb-4 p-0">
+                        <input type="text" name="namecard" id="cardno" class="form-control" placeholder="Name On Card"
+                            required>
+
+                        <label for="cardno">Name on Card</label>
+                    </div>
+
+                    <div class="form-floating mb-4 p-0">
+                        <input type="tel" name="cardno" pattern="[0-9]{16}" id="cardno" class="form-control"
+                            placeholder="Dish name" required>
+
+                        <label for="cardno">Card Number</label>
+                    </div>
+                    <div class="form-floating mb-4 p-0">
+                        <input type="text" name="expirydate" id="expirydate" class="form-control" placeholder="Price"
+                            required>
+                        <label for="expirydate">Expiry date</label>
+                    </div>
+
+
+                    <div class="form-floating p-0">
+                        <input type="password" name="cvv" id="amount" class="form-control" placeholder="Price" required>
+                        <label for="cvv">CVV</label>
+                    </div>
+                    <button type="submit" class="btn custom-btn form-control mt-4 mb-3">
+                        Submit
+                    </button>
+                </form>
+            </div>
+    </div>
+
+    <!-- {% if data %}
+            <div class="accordion" id="accordionGeneral">
+                {% for x in data %}
+                <div class="accordion-item">
+                    <h6 class="accordion-header" id="{{x.foodname}}">
+                        {{x.foodname}} <span style="float:right;">
+
+
+                            <input type="text" name="dishid" value="{{x.id}}" hidden>
+                            {{x.foodprice}} <b>$</b>
+                            <a href="{% url 'delete' x.id %}">X</a>
+                        </span>
+                    </h6>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %} -->
+    </center>
+    </div>
+
+</section>
+
+
+{% endblock %}

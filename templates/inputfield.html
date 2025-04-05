@@ -1,0 +1,33 @@
+{% extends "customerhome.html" %}
+{% block content %}
+
+
+<section class="faq section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <h2>Please Enter<span> Members count</span></h2>
+                <div class="row">
+                    <div class="col-lg-8 col-11">
+                        <form role="form" action="{% url 'tablebooking' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-floating mb-4 p-0">
+                                <input type="text" name="memberscount" id="members" class="form-control"
+                                    placeholder="Enter member's count" required>
+                                <input type="hidden" name="res_id"  value="{{res_id}}"/>
+                                <label for="dish">Enter member's count</label>
+                            </div>
+                            <button type="submit" class="btn custom-btn form-control mt-4 mb-3">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+{% endblock %}

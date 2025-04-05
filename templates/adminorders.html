@@ -1,0 +1,52 @@
+{% extends "adminhome.html" %} {% block content %}
+
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+<section class="contact section-padding">
+  <div class="container">
+    <center>
+      <div class="col-lg-6 col-12">
+        <h2 class="mb-4"><span> Orders</span></h2>
+        <div class="accordion" id="accordionGeneral">
+          <div class="accordion-item">
+            <table width="100%">
+              <th style="text-align: center">Id</th>
+              <th style="text-align: center">Dish Name</th>
+              <th style="text-align: center">Table Number</th>
+              <th style="text-align: center">No Of Plates</th>
+              <th style="text-align: center">Price</th>
+
+              {% for order in all_orders %}
+              <tr>
+                <td style="text-align: center">{{order.id}}</td>
+                <td style="text-align: center">{{order.dish_name}}</td>
+                <td style="text-align: center">{{order.table_number}}</td>
+                <td style="text-align: center">{{order.dish_count}}</td>
+                <td style="text-align: center">{{order.price}}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </center>
+  </div>
+</section>
+
+{% endblock %}

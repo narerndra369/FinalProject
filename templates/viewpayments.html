@@ -1,0 +1,73 @@
+{% extends "restauranthome.html" %}
+
+{% block content %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<section class="contact section-padding">
+    <div class="container">
+        <center>
+            <div class="col-lg-6 col-12">
+                <h2 class="mb-4">User<span> payments</span></h2>
+                <div class="accordion" id="accordionGeneral">
+                    <div class="accordion-item">
+                        <table width="100%">
+                            <th style="text-align: center;">Id</th>
+                            <th style="text-align: center;">User Email</th>
+                            {% comment %} <th style="text-align: center;">Amount</th> {% endcomment %}
+                            <th style="text-align: center;">Table Number</th>
+                            <th style="text-align: center;">QR Code</th>
+                            <th style="text-align: center;">Action</th>
+                            
+                            {% for i in data %}
+                            <tr>
+                                <td style="text-align:center">{{i.id}}</td>
+                                <td style="text-align:center">{{i.Email}}</td>
+                                {% comment %} <td style="text-align:center">{{i.amount}}</td> {% endcomment %}
+                                <td style="text-align:center">{{i.tablenumber}}</td>
+                                <td style="text-align:center">{{i.qrcode}}</td>
+                                {% if i.order_id.order_status == "Completed" %}
+                                <td style="text-align:center">{{i.order_id.order_status}}</td>
+                                {% else %}
+                                <td style="text-align:center"><a href="{% url 'decodepayqr' i.id %}"><button class="btn btn-primary">View</button></a></td>
+                                
+                                {% endif %}
+
+
+                                
+
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </center>
+
+
+
+    </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

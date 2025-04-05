@@ -1,0 +1,208 @@
+<!doctype>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>QR BasedFood Menu System</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/slick.css" />
+
+    <link href="/static/css/tooplate-little-fashion.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <section class="preloader">
+        <div class="spinner">
+            <span class="sk-inner-circle"></span>
+        </div>
+    </section>
+
+    <main>
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" href="/">
+                    <strong><span>QR Based</span>Food Menu System</strong>
+                </a>
+
+                <div class="d-lg-none">
+                    <a href="/" class="bi-person custom-icon me-3"></a>
+                    <a href="vieworder" class="bi-bag custom-icon"></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link">Welcome {{first}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="vieworder">Orders</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="viewpreorder">Pre Booking</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="addtablebooking">Table Booking</a>
+                        </li>
+
+
+                    </ul>
+
+                    <div class="d-none d-lg-block">
+                        <a href="/">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <header class="site-header section-padding d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12">
+                        <h2>
+                            {{rname}}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="faq section-padding">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12">
+                        <h2>Please Add <span>Your Menu Here</span></h2>
+
+                        <div class="row">
+                            <div class="col-lg-8 col-11">
+                                <form role="form" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-floating mb-4 p-0">
+                                        <input type="text" name="dish" id="dish" class="form-control"
+                                            placeholder="Dish name" required>
+
+                                        <label for="dish">Dish name</label>
+                                    </div>
+                                    <div class="form-floating p-0">
+
+                                        <input type="number" name="amount" id="amount" class="form-control"
+                                            placeholder="Price" required>
+
+                                        <label for="amount">Price</label>
+                                    </div>
+                                    <button type="submit" class="btn custom-btn form-control mt-4 mb-3">
+                                        Add
+                                    </button>
+                                    {% if status %}
+                                    <p class="text-center" style="font-size:1em; color:red;">{{status}}</a></p>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 col-11">
+                                <form role="form" action="addqr" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-floating p-0">
+
+                                        <input type="number" name="no" id="no" class="form-control"
+                                            placeholder="No of Tables" required>
+
+                                        <label for="no">No of Tables</label>
+                                    </div>
+                                    <button type="submit" class="btn custom-btn form-control mt-4 mb-3">
+                                        Add
+                                    </button>
+                                    {% if no %}
+                                    <p class="text-center" style="font-size:1em; color:red;">{{no}}</a></p>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                        {% if data %}
+                        <div class="accordion" id="accordionGeneral">
+                            {% for x in data %}
+                            <div class="accordion-item">
+                                <h6 class="accordion-header" id="{{x.dish}}">
+                                    {{x.dish}} <span style="float:right;">
+                                        <form action="delete" method="post" style="margin:0px; margin-right:-100px;">
+                                            {% csrf_token %}
+                                            <input type="text" name="dish" value="{{x.dish}}" hidden>
+                                            Rs {{x.price}}<button type="submit" style="background: white;
+    border: 0px; margin-right:0px">X</button>
+                                        </form>
+                                    </span>
+                                </h6>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-10 me-auto mb-4">
+                    <h4 class="text-white mb-3"><a href="/">QR Based</a>Food Menu System</h4>
+                    <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>QR Based Food
+                            Menu System</strong></p>
+                    <br>
+                </div>
+
+                <div class="col-lg-5 col-8">
+                    <h5 class="text-white mb-3">Sitemap</h5>
+
+                    <ul class="footer-menu d-flex flex-wrap">
+                        <li class="footer-menu-item"><a href="about" class="footer-menu-link">Story</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/Headroom.js"></script>
+    <script src="/static/js/jQuery.headroom.js"></script>
+    <script src="/static/js/slick.min.js"></script>
+    <script src="/static/js/custom.js"></script>
+
+</body>

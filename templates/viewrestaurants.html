@@ -1,0 +1,43 @@
+{% extends "customerhome.html" %}
+
+{% block content %}
+
+
+<section class="products section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12">
+                <h2 class="mb-5">Restaurants</h2>
+            </div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
+
+
+            {% for i in dc %}
+            <div class="col-lg-4 col-12 mb-3">
+                <div class="product-thumb">
+
+
+                    <div class="product-info d-flex">
+                        <div>
+                            <h5 class="product-title mb-0">
+                                <a href="{% url 'viewqr' i.id %}" class="product-title-link">{{i.restaurantname}}</a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+    </div>
+</section>
+{% endblock %}

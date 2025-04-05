@@ -1,0 +1,138 @@
+{% extends "customerhome.html" %}
+
+{% block content %}
+
+
+
+
+
+
+<!-- <section class="contact section-padding">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-6 col-12">
+                <h2 class="mb-4">Me<span>nu</span></h2>
+
+
+                {% if data %}
+                <div class="accordion" id="accordionGeneral">
+                    {% for x in data %}
+                    <div class="accordion-item">
+                        <h6 class="accordion-header" id="{{x.foodname}}">
+                            {{x.foodname}}   <span style="float:right; margin:0px; margin-right:-100px;">Rs {{x.price}} <input type="number" name="amount" class="amount" min="0" style="width:50px; height:25px;" value="0"></span>
+                        </h6>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <center>
+        <button style="width:500px;" class="btn custom-btn form-control mt-4 mb-3" id="order" onclick="cart()">Order</button>
+    </center>
+</section> -->
+
+<!--  -->
+
+
+
+
+
+<!--  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="contact section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-12">
+                <h2 class="mb-4">Me<span>nu</span></h2>
+
+
+                <div class="accordion" id="accordionGeneral">
+
+                    {% for x in data %}
+                    <div class="accordion-item">
+                        <h6 class="accordion-header" id="{{x.foodname}}">
+                            {{x.foodname}}
+                            <span style="margin-left:50%;">
+                                
+                                <input type="hidden" value="{{x.id}}">
+                                <span id="num1">{{x.foodprice}}</span> <b>$</b> X
+                                <input id="num2" type="text" name="dishcount{{forloop.counter}}" min="0" step="1"
+                                    style="width:53" onchange="addToDishes({{x.id}}, this.value)" required>
+                            </span>
+                        </h6>
+                    </div>
+                    {% endfor %}
+
+                    <!-- Hidden values but needed -->
+                    <input type="hidden" id="csrf_token" value="{{csrf_token}}" />
+                    <input type="hidden" id="restaurantid" value="{{rid}}">
+                    <input type="hidden" id="tableno" value="{{tableno}}">
+                    <input type="hidden" id="total" value="{{total}}" />
+                    <!-- End of hidden but needed values -->
+
+                    <center>
+                        <button style="width:500px;" class="btn custom-btn form-control mt-4 mb-3"
+                            id="order">Order</button>
+                    </center>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+<script>
+    const totalLoopCount = $('#total').val();
+
+    let body = {
+        csrfmiddlewaretoken: $('#csrf_token').val(),
+        tableno: $("#tableno").val(),
+        restaurantid: $('#restaurantid').val(),
+        dishes: [],
+        dishes_count: [],
+    }
+
+    //onclick the function
+    function addToDishes(dishData, dishCountData) {
+        body.dishes.push(dishData);
+        body.dishes_count.push(dishCountData);
+        console.log(body);
+    }
+
+    $('#order').on('click', (e) => {
+        $.ajax({
+            data: JSON.stringify(body),
+            headers: {
+                "X-CSRFToken": body.csrfmiddlewaretoken
+            },
+            dataType: "JSON",
+            url: "/userorder",
+            method: "POST",
+            success: (res) => {
+                alert(res.msg)
+                window.location.href = res.url
+            }
+        })
+    })
+
+</script>
+{% endblock %}
