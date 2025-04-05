@@ -3,3 +3,5 @@ pycryptodomex
 cryptography
 qrcode
 django
+pillow
+pymysql
