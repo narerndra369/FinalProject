@@ -5,3 +5,6 @@ qrcode
 django
 pillow
 pymysql
+pypng
+pyqrcode
+whitenoise
