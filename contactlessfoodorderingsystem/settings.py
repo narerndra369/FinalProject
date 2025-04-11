@@ -100,8 +100,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'backendcourse',
-        'USER': 'mysuperuser',
-        'PASSWORD': 'mysuperuser',
+        'USER': '*********',
+        'PASSWORD': '*******',
         'HOST': 'backendcourse.ckj0s4i8src9.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
@@ -157,5 +157,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Replace with your SMTP server address
 EMAIL_PORT = 587  # Replace with your SMTP server port (e.g., 587 for TLS)
 EMAIL_USE_TLS = True  # Set it to True if your SMTP server uses TLS
-EMAIL_HOST_USER = 'narendramalapula123@gmail.com'  # Replace with your email address
-EMAIL_HOST_PASSWORD = 'cceolmlvqabztjjc'
+EMAIL_HOST_USER = '********gmail.com'  # Replace with your email address
+EMAIL_HOST_PASSWORD = '************'
